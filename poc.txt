@@ -38824,6 +38824,7 @@
 ./poc/other/hihello.yaml
 ./poc/other/hijacking.yaml
 ./poc/other/hiki.yaml
+./poc/other/hikivision-env.yaml
 ./poc/other/hikvision-bigdatadiagnosis.yaml
 ./poc/other/hikvision-cloudvideo.yaml
 ./poc/other/hikvision-gateway-data-file-read.yaml
