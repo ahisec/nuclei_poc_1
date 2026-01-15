@@ -1,31 +1,31 @@
-id: wp_job_board-7cdfce88-b6c2-4820-9d6f-446f61b9b596
+id: imgspider-3dee74dc-32ae-47cd-8797-dbba60387702
 
 info:
   name: >
-    WP Job Board < 2.3.16 - Unauthenticated Privilege Escalation via process_register
+    IMGspider <= 2.3.12 - Authenticated (Contributor+) Server-Side Request Forgery
   author: topscoder
   severity: low
   description: >
     
   reference:
     - https://github.com/topscoder/nuclei-wordfence-cve
-    - https://www.wordfence.com/threat-intel/vulnerabilities/id/7cdfce88-b6c2-4820-9d6f-446f61b9b596?source=api-scan
+    - https://www.wordfence.com/threat-intel/vulnerabilities/id/3dee74dc-32ae-47cd-8797-dbba60387702?source=api-scan
   classification:
     cvss-metrics: 
     cvss-score: 
     cve-id: 
   metadata:
-    fofa-query: "wp-content/plugins/wp-job-board/"
-    google-query: inurl:"/wp-content/plugins/wp-job-board/"
-    shodan-query: 'http.html:"wp-content/plugins/wp-job-board/"'
-  tags: cve,wordpress,wp-plugin,wp-job-board,low,candidate
+    fofa-query: "wp-content/plugins/imgspider/"
+    google-query: inurl:"/wp-content/plugins/imgspider/"
+    shodan-query: 'http.html:"wp-content/plugins/imgspider/"'
+  tags: cve,wordpress,wp-plugin,imgspider,low,candidate
 
 http:
   - method: GET
     redirects: true
     max-redirects: 3
     path:
-      - "{{BaseURL}}/wp-content/plugins/wp-job-board/readme.txt"
+      - "{{BaseURL}}/wp-content/plugins/imgspider/readme.txt"
 
     extractors:
       - type: regex
@@ -43,9 +43,9 @@ http:
 
       - type: word
         words:
-          - "wp-job-board"
+          - "imgspider"
         part: body
 
       - type: dsl
         dsl:
-          - compare_versions(version, '< 2.3.16')
+          - compare_versions(version, '<= 2.3.12')
