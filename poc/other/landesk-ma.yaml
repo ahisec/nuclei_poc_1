@@ -1,23 +1,21 @@
+http:
+- matchers:
+  - condition: and
+    part: body
+    type: word
+    words:
+    - LANDesk(R)
+    - Management Agent
+  method: GET
+  path:
+  - '{{BaseURL}}'
 id: landesk-ma
-
 info:
-  name: LANDESK(R) Management Agent Detect
   author: 0xNirvana
-  severity: info
   metadata:
-    verified: true
+    max-request: 1
     shodan-query: http.html:"LANDESK(R)"
-  tags: technology,landesk
-
-requests:
-  - method: GET
-    path:
-      - "{{BaseURL}}"
-
-    matchers:
-      - type: word
-        part: body
-        words:
-          - "LANDesk(R)"
-          - "Management Agent"
-        condition: and
+    verified: true
+  name: LANDESK(R) Management Agent Detect
+  severity: info
+  tags: tech,landesk

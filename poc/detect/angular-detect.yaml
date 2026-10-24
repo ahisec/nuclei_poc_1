@@ -1,32 +1,29 @@
+http:
+- extractors:
+  - group: 1
+    regex:
+    - ng-version="([0-9.]+)"
+    type: regex
+  matchers:
+  - part: body
+    type: word
+    words:
+    - ng-version=
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}'
 id: angular-detect
-
 info:
-  name: Angular detect
   author: TechbrunchFR
-  severity: info
-  description: Angular is a development platform for building mobile and desktop web applications using Typescript/JavaScript and other languages.
-  reference:
-    - https://github.com/angular/angular
+  description: Angular is a development platform for building mobile and desktop web
+    applications using Typescript/JavaScript and other languages.
   metadata:
-    verified: true
+    max-request: 1
     shodan-query: html:"ng-version="
-  tags: technology,angular
-
-requests:
-  - method: GET
-    path:
-      - "{{BaseURL}}"
-
-    matchers-condition: and
-
-    matchers:
-      - part: body
-        type: word
-        words:
-          - "ng-version="
-
-    extractors:
-      - type: regex
-        group: 1
-        regex:
-          - 'ng-version="([0-9.]+)"'
+    verified: true
+  name: Angular detect
+  reference:
+  - https://github.com/angular/angular
+  severity: info
+  tags: tech,angular

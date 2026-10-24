@@ -1,23 +1,21 @@
+http:
+- matchers:
+  - condition: and
+    part: body
+    type: word
+    words:
+    - LANDESK(R)
+    - Cloud Services Appliance
+  method: GET
+  path:
+  - '{{BaseURL}}'
 id: landesk-csa
-
 info:
-  name: LANDESK(R) Cloud Services Appliance Detect
   author: 0xNirvana
-  severity: info
   metadata:
-    verified: true
+    max-request: 1
     shodan-query: http.html:"LANDESK(R)"
-  tags: technology,landesk
-
-requests:
-  - method: GET
-    path:
-      - "{{BaseURL}}"
-
-    matchers:
-      - type: word
-        part: body
-        words:
-          - "LANDESK(R)"
-          - "Cloud Services Appliance"
-        condition: and
+    verified: true
+  name: LANDESK(R) Cloud Services Appliance Detect
+  severity: info
+  tags: tech,landesk
