@@ -12,7 +12,7 @@ info:
     verified: true
     max-request: 2
     shodan-query: product:"OpenSSH"
-  tags: enum,js,ssh,misconfig,network
+  tags: javascript,ssh,misconfig,network
 
 javascript:
   - pre-condition: |
@@ -38,4 +38,4 @@ javascript:
       - type: word
         words:
           - "hmac-sha1"
-# digest: 4a0a0047304502206210881f22cd8c86f258ac9555736dc09d747df628475ba0dbac86b71078eff2022100ef7b5b68c9686f7120ccf30edaf60bbb4b9b733b690b0e3baf4777e482a5d692:922c64590222798bb761d5b6d8e72950
+# digest: 4b0a00483046022100fc25883d630f68585ee87efaa0e97d5093c82c0b926b8ad2a6453b706dd9edb1022100a1636440421cfd17c750f2246e3c87448b92c36975bf4c2e1f7d384d93aa8f36:922c64590222798bb761d5b6d8e72950

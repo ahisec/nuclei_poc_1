@@ -7,11 +7,9 @@ info:
   reference:
     - https://docs.sendgrid.com/for-developers/sending-email/getting-started-smtp
   tags: token-spray,sendgrid
-  metadata:
-    max-request: 1
 
 self-contained: true
-tcp:
+network:
   - inputs:
       - data: "ehlo\r\n"
         read: 1024

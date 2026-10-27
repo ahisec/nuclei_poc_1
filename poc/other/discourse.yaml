@@ -1,28 +1,24 @@
 id: discourse
+
 info:
-  name: discourse
-  author: cn-kali-team
-  tags: detect,tech,discourse
+  name: Discourse
+  author: dwisiswant0
   severity: info
-  metadata:
-    fofa-query:
-    - body="discourse"
-    - app="discourse"
-    hunter-query:
-    - web.title="discourse"
-    product: discourse
-    shodan-query:
-    - http.component:"discourse"
-    vendor: discourse
-    verified: true
-    zoomeye-query:
-    - app:"discourse"
-http:
-- method: GET
-  path:
-  - '{{BaseURL}}/'
-  matchers:
-  - type: word
-    words:
-    - discourse
-    case-insensitive: true
+  tags: osint,osint-misc,discourse
+
+self-contained: true
+requests:
+  - method: GET
+    path:
+      - "https://meta.discourse.org/u/{{user}}/summary.json"
+
+    matchers-condition: and
+    matchers:
+      - type: status
+        status:
+          - 200
+
+      - type: word
+        part: body
+        words:
+          - "topics"
