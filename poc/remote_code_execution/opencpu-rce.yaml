@@ -11,7 +11,7 @@ info:
     - https://github.com/opencpu/opencpu/
   metadata:
     max-request: 1
-  tags: rce,opencpu,oss
+  tags: rce,opencpu,oss,vuln
 
 http:
   - method: POST
@@ -43,5 +43,4 @@ http:
         group: 1
         regex:
           - \(([a-z-]+)\)
-
-# digest: 4b0a0048304602210081e561aa4d2536e6a32a09f8a278c5200d38b1ef1f28f8c1ca4c02ce82690012022100b6b4f9d3c34041e8e3a6c3dca08e0ea35321d447d99b283e5f730099d576f818:922c64590222798bb761d5b6d8e72950
+# digest: 4b0a00483046022100a84f09efb219325c2f11c3ce7db59b82edc4ee84c56c5399b67b504d5c8f919f022100b3b456384ff17e69db07f12c5826dc5e8880ee07f8666597bd3c0b884b6e0c04:922c64590222798bb761d5b6d8e72950

@@ -1,22 +1,19 @@
 id: magnolia-panel
 
 info:
-  name: Magnolia CMS Login Panel - Detect
-  author: pussycat0x
+  name: Magnolia Panel - Detect
+  author: rix4uni
   severity: info
-  description: |
-    Magnolia CMS login panel was detected.
+  description: Mangnolia CMS default credentials were discovered.
   reference:
-    - https://www.magnolia-cms.com/
-  classification:
-    cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
-    cvss-score: 0
-    cwe-id: CWE-200
+    - https://www.magnolia-cms.com
   metadata:
-    verified: true
-    max-request: 2
-    shodan-query: html:"Magnolia is a registered trademark"
-  tags: magnolia,panel,login
+    shodan-query:
+      - http.favicon.hash:1545970007
+    fofa-query:
+      - body="<title>Magnolia 6</title>"
+      - body="<title>Magnolia 5</title>"
+  tags: magnolia,default-login
 
 http:
   - method: GET
@@ -25,17 +22,14 @@ http:
       - "{{BaseURL}}/.magnolia/admincentral"
 
     stop-at-first-match: true
-
     matchers-condition: and
     matchers:
       - type: word
         part: body
         words:
-          - 'Magnolia is a registered trademark'
+          - "<title>Magnolia 6</title>"
+          - "<title>Magnolia 5</title>"
 
-      - type: word
-        part: header
-        words:
-          - "text/html"
-
-# digest: 490a0046304402201460776193735abbf162d629da011e493788874a75ded492677ee3eef0dcedff02207d62541af8dded3d970f24bedff2dc32a6bf75b2f011db055d03aa770c69f8ee:922c64590222798bb761d5b6d8e72950
+      - type: status
+        status:
+          - 401
