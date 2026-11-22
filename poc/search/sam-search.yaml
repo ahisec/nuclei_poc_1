@@ -3,7 +3,7 @@ info:
   name: Find saml
   author: Clark
   severity: meduim
-http:
+requests:
   - method: GET
     path:
       - "{{BaseURL}}/saml/module.php/core/frontpage_welcome.php"

